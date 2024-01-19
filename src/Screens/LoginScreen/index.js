@@ -6,7 +6,7 @@ import {Formik} from 'formik';
 import styles from './styles';
 import Theme, { moderateScale } from '../Theme';
 import Button from '../../Components/Custom/Button';
-import Icon from 'react-native-vector-icons/Entypo';
+import Feather from 'react-native-vector-icons/Feather';
 
 const loginValidationSchema = Yup.object().shape({
   email: Yup.string().email('Invalid Email').required('Email Required'),
@@ -97,7 +97,7 @@ const LoginForm = ({navigation}) => {
                 />
                <TouchableOpacity onPress={() => setShowPassword(!showPassword)}
                   style={{position: 'absolute', right: 10, bottom: 10}}>
-               <Icon name={showPassword ? 'eye' : 'eye-with-line'}
+               <Feather name={showPassword ? 'eye' : 'eye-off'}
  size={20} color="black" style={[styles.icon,{marginLeft:5}]} />
                 </TouchableOpacity>
               </View>

@@ -6,6 +6,7 @@ import {Formik} from 'formik';
 import styles from './styles';
 import Theme, { moderateScale } from '../Theme';
 import Button from '../../Components/Custom/Button';
+import Feather from 'react-native-vector-icons/Feather';
 
 const validationSchema = Yup.object().shape({
   name: Yup.string()
@@ -31,11 +32,15 @@ const validationSchema = Yup.object().shape({
 
 
 const SignUpForm = ({navigation}) => {
-  const handleSubmit = (values) => {
-    // Handle form submission logic here
 
-    console.log(values);
-  };
+  const [showPassword, setShowPassword] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState(false);
+  const handleSubmit = (values) => {
+      // Handle form submission logic here
+    navigation.navigate('Welcomesrc');
+  
+      console.log(values);
+    };
   return (
     <Formik
     initialValues={{
@@ -109,8 +114,8 @@ const SignUpForm = ({navigation}) => {
           <View>  
             <TextInput
               placeholder="Password"
-              // secureTextEntry={showPassword? false : true}
-              secureTextEntry
+              secureTextEntry={showPassword? false : true}
+           
               onChangeText={handleChange('password')}
               placeholderTextColor={Theme.colors.placeHolderColor}
               value={values.password}
@@ -127,11 +132,8 @@ const SignUpForm = ({navigation}) => {
              <TouchableOpacity
                   onPress={() => setShowPassword(!showPassword)}
                   style={{position: 'absolute', right: 10, bottom: 10}}>
-                  {/* <Feather
-                    name={showPassword ? 'eye' : 'eye-off'}
-                    size={20}
-                    color={COLORS.darkTextColor}
-                  /> */}
+                   <Feather name={showPassword ? 'eye' : 'eye-off'}
+ size={20} color="black" style={[styles.icon,{marginLeft:5}]} />
                 </TouchableOpacity></View>
             {errors.password && touched.password && (
               <Text style={{color: Theme.colors.red}}>{errors.password}</Text>
@@ -139,8 +141,8 @@ const SignUpForm = ({navigation}) => {
             <View>
             <TextInput
               placeholder=" Confirm Password"
-              secureTextEntry
-              // secureTextEntry={confirmPassword? false : true}
+             // secureTextEntry
+              secureTextEntry={confirmPassword? false : true}
               onChangeText={handleChange('confirmPassword')}
               value={values.confirmPassword}
               placeholderTextColor={Theme.colors.placeHolderColor}
@@ -157,6 +159,8 @@ const SignUpForm = ({navigation}) => {
             <TouchableOpacity
                   onPress={() => setConfirmPassword(!confirmPassword)}
                   style={{position: 'absolute', right: 10, bottom: 10}}>
+                      <Feather name={confirmPassword ? 'eye' : 'eye-off'}
+ size={20} color="black" style={[styles.icon,{marginLeft:5}]} />
                   {/* <Feather
                     name={confirmPassword ? 'eye' : 'eye-off'}
                     size={20}
