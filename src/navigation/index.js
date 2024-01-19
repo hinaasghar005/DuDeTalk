@@ -16,7 +16,7 @@ const AuthStack = () => {
   const Stack = createNativeStackNavigator();
   return (
     <Stack.Navigator
-      initialRouteName="AudioSrc"
+      initialRouteName="SignUpForm"
       screenOptions={{
         headerStyle: {
           headerShown: false,

@@ -94,9 +94,9 @@ marginTop: moderateScale(25),
    // alignSelf: 'center',
   },
   texstyle: {
-    color: Theme.colors.dimGreen,
+    color: 'black',
     fontWeight: '500',
-    marginTop: scale(80),
+   marginTop: scale(32),
     textDecorationLine: 'underline',
     fontWeight: 'bold',
   },
@@ -106,9 +106,12 @@ marginTop: moderateScale(25),
     justifyContent: 'center',
     paddingTop: scale(30),
     fontWeight: '500',
+    textDecorationLine:'underline',
     lineHeight: moderateScale(20),
-    color: Theme.colors.placeHolderColor
+    color: Theme.colors.placeHolderColor,
+    
   },
+  logtext:{flexDirection:'row'}
 });
 
 export default styles;

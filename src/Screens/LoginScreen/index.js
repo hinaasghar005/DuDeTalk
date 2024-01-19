@@ -6,7 +6,7 @@ import {Formik} from 'formik';
 import styles from './styles';
 import Theme, { moderateScale } from '../Theme';
 import Button from '../../Components/Custom/Button';
-
+import Icon from 'react-native-vector-icons/Entypo';
 
 const loginValidationSchema = Yup.object().shape({
   email: Yup.string().email('Invalid Email').required('Email Required'),
@@ -21,7 +21,14 @@ const loginValidationSchema = Yup.object().shape({
 
 
 
-const LoginForm = () => {
+const LoginForm = ({navigation}) => {
+  const [showPassword, setShowPassword] = useState(false);
+  const handleSubmit = (values) => {
+      // Handle form submission logic here
+    navigation.navigate('Welcomesrc');
+  
+      console.log(values);
+    };
   return (
     <Formik
     initialValues={{
@@ -30,8 +37,7 @@ const LoginForm = () => {
     }}
  //   validateOnMount={true}
     validationSchema={loginValidationSchema}
-    // onSubmit={values => handleEmailPress(values)}
-    >
+    onSubmit={values => handleSubmit(values)}>
     {({
       handleChange,
       handleBlur,
@@ -75,7 +81,7 @@ const LoginForm = () => {
               <View>
                 <TextInput
                   placeholder="Password"
-                  // secureTextEntry={showEye ? false : true}
+                  secureTextEntry={!showPassword}
                   onChangeText={handleChange('password')}
                   value={values.password}
                   placeholderTextColor={Theme.colors.placeHolderColor}
@@ -89,14 +95,10 @@ const LoginForm = () => {
                     },
                   ]}
                 />
-                <TouchableOpacity
-                  // onPress={() => setShowEye(!showEye)}
+               <TouchableOpacity onPress={() => setShowPassword(!showPassword)}
                   style={{position: 'absolute', right: 10, bottom: 10}}>
-                  {/* <Feather
-                    name={showEye ? 'eye' : 'eye-off'}
-                    size={20}
-                    color={COLORS.darkTextColor}
-                  /> */}
+               <Icon name={showPassword ? 'eye' : 'eye-with-line'}
+ size={20} color="black" style={[styles.icon,{marginLeft:5}]} />
                 </TouchableOpacity>
               </View>
 
@@ -128,7 +130,8 @@ const LoginForm = () => {
               text={'Login'}
               // loading={loading}
               // onPress={ handleEmailPress}
-              onPress={handleSubmit}
+              // onPress={handleSubmit}
+              onPress={() => navigation.navigate('Welcomesrc')}
             />
              {/* <Text style={styles.BottomText}>
           Already have an account?

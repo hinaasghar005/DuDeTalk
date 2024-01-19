@@ -30,7 +30,12 @@ const validationSchema = Yup.object().shape({
 
 
 
-const SignUpForm = () => {
+const SignUpForm = ({navigation}) => {
+  const handleSubmit = (values) => {
+    // Handle form submission logic here
+
+    console.log(values);
+  };
   return (
     <Formik
     initialValues={{
@@ -105,6 +110,7 @@ const SignUpForm = () => {
             <TextInput
               placeholder="Password"
               // secureTextEntry={showPassword? false : true}
+              secureTextEntry
               onChangeText={handleChange('password')}
               placeholderTextColor={Theme.colors.placeHolderColor}
               value={values.password}
@@ -133,6 +139,7 @@ const SignUpForm = () => {
             <View>
             <TextInput
               placeholder=" Confirm Password"
+              secureTextEntry
               // secureTextEntry={confirmPassword? false : true}
               onChangeText={handleChange('confirmPassword')}
               value={values.confirmPassword}
@@ -180,11 +187,14 @@ const SignUpForm = () => {
               // onPress={ handleEmailPress}
               onPress={handleSubmit}
             />
+            <View style={styles.logtext}>
              <Text style={styles.BottomText}>
           Already have an account?
+          </Text>
+          <TouchableOpacity  onPress={() => navigation.navigate('LoginForm')}>
         <Text style={styles.texstyle}>Login</Text>
-        
-      </Text>
+        </TouchableOpacity>
+        </View>
             {/* <CustomButton
               text="Signup"
               onPress={handleSubmit}
