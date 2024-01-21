@@ -234,7 +234,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     borderWidth: 2,
     borderRadius: 50,
-    borderColor: 'white',
+    borderColor: Theme.colors.orangeColor,
     height: 50,
     width: 50,
     display: 'flex',
@@ -245,7 +245,7 @@ const styles = StyleSheet.create({
     height: 40,
     width: 40,
     borderRadius: 20,
-    backgroundColor: 'white',
+    backgroundColor: Theme.colors.orangeColor,
   },
   micTouch: {
     padding: scale(15),

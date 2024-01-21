@@ -8,9 +8,8 @@ import {
 } from 'react-native';
 import Theme, {moderateScale, normalized, scale} from '../../Screens/Theme';
 
-
 // import { heightPercentageToDP } from 'react-native-responsive-screen';
-import { fontSize } from '../Constants/index';
+import {fontSize} from '../Constants/index';
 export default Button = ({
   text,
   disabled,
@@ -35,7 +34,7 @@ export default Button = ({
         <View
           style={{
             flexDirection: 'row',
-            gap:5,
+            gap: 5,
             alignItems: 'center',
           }}>
           {leftIcon}
@@ -55,16 +54,18 @@ export default Button = ({
 };
 const styles = StyleSheet.create({
   mainContainer: {
-   borderWidth: moderateScale(1),
-    width: "80%",
+    borderWidth: moderateScale(1),
+    width: '80%',
     alignSelf: 'center',
     padding: moderateScale(15),
     borderRadius: 100,
-    backgroundColor: '#F7A045',
+    backgroundColor: Theme.colors.orangeColor, //'#F7A045',
     flexDirection: 'row',
-    justifyContent:'center'
+    justifyContent: 'center',
   },
   buttonText: {
-    fontWeight: 'bold', color: Theme.colors.darkTextColor, fontSize: moderateScale(20) }
-}
-);
+    fontWeight: 'bold',
+    color: Theme.colors.darkTextColor,
+    fontSize: moderateScale(20),
+  },
+});

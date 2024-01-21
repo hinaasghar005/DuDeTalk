@@ -1,13 +1,12 @@
-import {createNativeStackNavigator} from "@react-navigation/native-stack";
-import LoginForm from "../Screens/LoginScreen";
-import SignUpForm from "../Screens/SignupScreen";
-import Welcomesrc from "../Screens/WelcomeScreen";
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import LoginForm from '../Screens/LoginScreen';
+import SignUpForm from '../Screens/SignupScreen';
+import Welcomesrc from '../Screens/WelcomeScreen';
 
-import Audiosrc from "../Screens/AudioScreen";
-import Gesturesrc from "../Screens/GestureScreen";
-import Camerasrc from "../Screens/CameraScreen";
-import Splash from "../Screens/SplashScreen";
-
+import Audiosrc from '../Screens/AudioScreen';
+import Gesturesrc from '../Screens/GestureScreen';
+import Camerasrc from '../Screens/CameraScreen';
+import Splash from '../Screens/SplashScreen';
 
 const StackNavigation = () => {
   return <AuthStack />;
@@ -17,14 +16,13 @@ const AuthStack = () => {
   const Stack = createNativeStackNavigator();
   return (
     <Stack.Navigator
-      initialRouteName="Splash"
+      initialRouteName="LoginForm"
       screenOptions={{
         headerStyle: {
           headerShown: false,
         },
-      }}
-    >
-        <Stack.Screen
+      }}>
+      <Stack.Screen
         name="Splash"
         component={Splash}
         options={{
@@ -40,7 +38,7 @@ const AuthStack = () => {
           headerShown: false,
         }}
       />
-        <Stack.Screen
+      <Stack.Screen
         name="Gesturesrc"
         component={Gesturesrc}
         options={{
@@ -48,7 +46,7 @@ const AuthStack = () => {
           headerShown: false,
         }}
       />
-       <Stack.Screen
+      <Stack.Screen
         name="AudioSrc"
         component={Audiosrc}
         options={{
@@ -56,7 +54,7 @@ const AuthStack = () => {
           headerShown: false,
         }}
       />
-       <Stack.Screen
+      <Stack.Screen
         name="SignUpForm"
         component={SignUpForm}
         options={{
@@ -64,7 +62,7 @@ const AuthStack = () => {
           headerShown: false,
         }}
       />
- <Stack.Screen
+      <Stack.Screen
         name="Welcomesrc"
         component={Welcomesrc}
         options={{
@@ -72,7 +70,7 @@ const AuthStack = () => {
           headerShown: false,
         }}
       />
-       <Stack.Screen
+      <Stack.Screen
         name="Camerasrc"
         component={Camerasrc}
         options={{
@@ -80,8 +78,6 @@ const AuthStack = () => {
           headerShown: false,
         }}
       />
- 
-
     </Stack.Navigator>
   );
 };
