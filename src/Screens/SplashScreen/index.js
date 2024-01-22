@@ -1,5 +1,13 @@
+/* eslint-disable no-unused-vars */
 import React, {useEffect} from 'react';
-import {Image, ScrollView, StatusBar, StyleSheet, View} from 'react-native';
+import {
+  Image,
+  ImageBackground,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  View,
+} from 'react-native';
 
 import {
   heightPercentageToDP,
@@ -7,26 +15,25 @@ import {
 } from 'react-native-responsive-screen';
 
 const Splash = ({navigation}) => {
-  useEffect(() => {
-    setTimeout(() => {
-      navigation.navigate('LoginForm');
-    }, 2000);
-  }, [navigation]);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     navigation.navigate('LoginForm');
+  //   }, 2000);
+  // }, [navigation]);
   return (
-    <View style={styles.mainContainer}>
+    <ImageBackground
+      style={styles.mainView}
+      source={require('../../assets/images/bgImage.png')}>
       <StatusBar barStyle={'light-content'} />
-      <Image
-        resizeMode="stretch"
-        style={styles.logo}
-        source={require('../../assets/images/DuDeSplash.png')}
-      />
-    </View>
+    </ImageBackground>
   );
 };
 const styles = StyleSheet.create({
-  mainContainer: {
-    backgroundColor: 'black',
+  mainView: {
     flex: 1,
+    resizeMode: 'cover',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   logo: {
     height: heightPercentageToDP(100),

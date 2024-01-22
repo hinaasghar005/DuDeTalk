@@ -15,6 +15,7 @@ import styles from './styles';
 import Theme, {moderateScale, scale} from '../Theme';
 import Button from '../../Components/Custom/Button';
 import Feather from 'react-native-vector-icons/Feather';
+import BootSplash from 'react-native-bootsplash';
 
 const loginValidationSchema = Yup.object().shape({
   email: Yup.string().email('Invalid Email').required('Email Required'),
@@ -35,6 +36,16 @@ const LoginForm = ({navigation}) => {
 
     console.log(values);
   };
+  useEffect(() => {
+    const init = async () => {
+      // …do multiple sync or async tasks
+    };
+
+    init().finally(async () => {
+      await BootSplash.hide({fade: true});
+      console.log('BootSplash has been hidden successfully');
+    });
+  }, []);
   return (
     <Formik
       initialValues={{
