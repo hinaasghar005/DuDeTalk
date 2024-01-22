@@ -1,14 +1,10 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react-native/no-inline-styles */
 import React, {useEffect, useState, useRef} from 'react';
 import {
-  Alert,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
   ImageBackground,
-  Image,
   ScrollView,
   ActivityIndicator,
   Pressable,
@@ -21,6 +17,7 @@ import {Icon} from 'react-native-elements';
 import {gpt4_vision} from '../../services/AI_Modals/gpt4-vision';
 import {textToSpeech} from '../../services/AI_Modals/textToSpeech';
 import SoundPlayer from 'react-native-sound-player';
+import RNFS from 'react-native-fs';
 
 const Camerasrc = ({navigation}) => {
   const cameraRef = useRef(null);
@@ -31,6 +28,17 @@ const Camerasrc = ({navigation}) => {
   const [audio, setAudio] = useState('');
 
   useEffect(() => {
+    const _onFinishedPlayingSubscription = SoundPlayer.addEventListener(
+      'FinishedPlaying',
+      ({success}) => {
+        console.log('finished playing', success);
+        if (success) {
+          SoundPlayer.stop();
+          setIsPlaying(false);
+        }
+      },
+    );
+
     const _onFinishedLoadingSubscription = SoundPlayer.addEventListener(
       'FinishedLoading',
       ({success}) => {
@@ -48,6 +56,7 @@ const Camerasrc = ({navigation}) => {
     return () => {
       _onFinishedLoadingSubscription.remove();
       _onFinishedLoadingURLSubscription.remove();
+      _onFinishedPlayingSubscription.remove();
     };
   }, []);
   const takePicture = async () => {
@@ -79,17 +88,15 @@ const Camerasrc = ({navigation}) => {
                 JSON.stringify(res.result.data),
               );
               //data:audio/mpeg;base64,
-              setAudio(
-                `data:audio/wav;base64,${res.result?.data?.audio?.base64}`,
-              );
-              try {
-                SoundPlayer.loadUrl(
-                  `data:audio/wav;base64,${res.result?.data?.audio?.base64}`,
-                );
-                console.log('...Audio Load successfully...');
-              } catch (err) {
-                console.log('🚀 ~ Audio play ~ err:', err);
-              }
+              setAudio(`${res.result?.data?.audio?.base64}`);
+              // try {
+              //   SoundPlayer.loadUrl(
+              //     `data:audio/acc;base64,${res.result?.data?.audio?.base64}`,
+              //   );
+              //   console.log('...Audio Load successfully...');
+              // } catch (err) {
+              //   console.log('🚀 ~ Audio play ~ err:', err);
+              // }
             })
             .catch(err => {
               console.log('🚀 ~ takePicture ~ err:', err);
@@ -108,6 +115,18 @@ const Camerasrc = ({navigation}) => {
       // Handle the captured image data as needed
     }
   };
+  const playPauseAudio = async () => {
+    const audioPath = RNFS.DocumentDirectoryPath + '/audio.wav';
+    console.log('test1');
+    console.log('test2', audio.substring(0, 10));
+
+    // Write the binary data to a file
+    await RNFS.writeFile(audioPath, audio, 'base64');
+    console.log('🚀 ~ playPauseAudio ~ audioPath:', audioPath);
+
+    isPlaying ? SoundPlayer.stop() : SoundPlayer.playUrl(audioPath);
+  };
+
   return (
     <ImageBackground
       style={styles.mainView}
@@ -173,7 +192,7 @@ const Camerasrc = ({navigation}) => {
             alignItems: 'center',
             marginVertical: scale(10),
           }}>
-          <TouchableOpacity
+          <Pressable
             style={[
               styles.micTouch,
               isPlaying && {backgroundColor: Theme.colors.red},
@@ -181,7 +200,10 @@ const Camerasrc = ({navigation}) => {
             ]}
             disabled={audio.length === 0}
             onPress={() => {
-              isPlaying ? SoundPlayer.playUrl(audio) : SoundPlayer.stop();
+              // isPlaying
+              //   ? SoundPlayer.pause()
+              //   : SoundPlayer.playUrl(sampleAudio);
+              playPauseAudio();
               setIsPlaying(!isPlaying);
             }}>
             {loadingAudio ? (
@@ -194,7 +216,7 @@ const Camerasrc = ({navigation}) => {
                 color={Theme.colors.white}
               />
             )}
-          </TouchableOpacity>
+          </Pressable>
         </View>
       </KeyboardAwareScrollView>
     </ImageBackground>

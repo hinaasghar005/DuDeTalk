@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   DealText: {
     fontSize: 30,
     fontWeight: '600',
-    color: Theme.colors.modalBackground,
+    color: Theme.colors.orangeColor,
     textAlign: 'center',
   },
   or: {

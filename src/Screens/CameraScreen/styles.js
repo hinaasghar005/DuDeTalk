@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     //color: Theme.colors.modalBackground,
     textAlign: 'center',
     padding: 5,
-    color: '#F7A045',
+    color: Theme.colors.orangeColor,
   },
   or: {
     marginVertical: moderateScale(20),
@@ -98,8 +98,6 @@ const styles = StyleSheet.create({
     borderColor: Theme.colors.darkTextColor,
   },
   mainView: {
-    // flex: 1,
-    // justifyContent: 'center'
     flex: 1,
     resizeMode: 'cover',
     justifyContent: 'center',
