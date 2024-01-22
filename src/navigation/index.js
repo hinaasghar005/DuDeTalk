@@ -6,6 +6,7 @@ import Welcomesrc from "../Screens/WelcomeScreen";
 import Audiosrc from "../Screens/AudioScreen";
 import Gesturesrc from "../Screens/GestureScreen";
 import Camerasrc from "../Screens/CameraScreen";
+import Splash from "../Screens/SplashScreen";
 
 
 const StackNavigation = () => {
@@ -16,13 +17,21 @@ const AuthStack = () => {
   const Stack = createNativeStackNavigator();
   return (
     <Stack.Navigator
-      initialRouteName="SignUpForm"
+      initialRouteName="Splash"
       screenOptions={{
         headerStyle: {
           headerShown: false,
         },
       }}
     >
+        <Stack.Screen
+        name="Splash"
+        component={Splash}
+        options={{
+          headerShadowVisible: false,
+          headerShown: false,
+        }}
+      />
       <Stack.Screen
         name="LoginForm"
         component={LoginForm}
